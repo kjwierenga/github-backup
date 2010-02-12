@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 
-$:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-
+require 'rubygems'
 require 'octopi'
+
+$:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'github-backup'
 
 unless ARGV.length == 2
