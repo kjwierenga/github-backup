@@ -20,7 +20,6 @@ class Github::Backup
     authenticated do
       repositories = User.find(username).repositories.sort_by { |r| r.name }
       repositories.each do |repository|
-        puts "Backing up: #{repository.name}"
         backup_repository repository
       end
     end
@@ -40,8 +39,10 @@ private ######################################################################
 
   def backup_repository(repository)
     if File.exists?(backup_directory_for(repository))
+      puts "Updating backup: #{repository.name}"
       backup_repository_incremental(repository)
     else
+      puts "Creating backup: #{repository.name}"
       backup_repository_initial(repository)
     end
   end
